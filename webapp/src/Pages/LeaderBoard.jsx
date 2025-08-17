@@ -1,6 +1,7 @@
 import { PlayerCard } from "../Components/Playercard";
 import { Trophy } from "lucide-react";
 import "./LeaderBoard.css";
+import Navbar from "../Components/Navbar";
 
 const leaderboardData = [
   { id: 1, name: "Mr_X",   rank: 1 },
@@ -18,6 +19,7 @@ const leaderboardData = [
 
   return (
     <div className="leaderboard-container">
+      <Navbar />
       <div className="leaderboard-page">
         {/* Header */}
         <div className="leaderboard-header">
