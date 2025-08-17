@@ -16,13 +16,13 @@ body, html, #root {
 nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem 4vw;
   font-weight: 600;
   font-size: 0.95rem;
   user-select: none;
   position: relative;
   z-index: 10;
-  
 }
 
 nav .logo {
@@ -39,22 +39,10 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 5rem;
-  justify-content: center;  /* center horizontally */
-  margin-left: 0;           /* remove that left push */
+  justify-content: center;
+  margin-left: 0;
   padding-left: 0;
 }
-
-nav ul li a {
-  color: #ddd;          /* normal color */
-  text-decoration: none; /* remove underline */
-  transition: color 0.3s ease;
-}
-
-nav ul li a:hover,
-nav ul li a:focus {
-  color: #b7aefc; /* your hover color */
-}
-
 
 nav ul li {
   position: relative;
@@ -64,7 +52,19 @@ nav ul li {
   transition: color 0.3s ease;
 }
 
-nav ul li:hover, nav ul li:focus-within {
+nav ul li a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #b7aefc;
+}
+
+nav ul li:hover,
+nav ul li:focus-within {
   color: #b7aefc;
 }
 
@@ -85,7 +85,8 @@ nav ul li ul {
   z-index: 20;
 }
 
-nav ul li:hover > ul, nav ul li:focus-within > ul {
+nav ul li:hover > ul,
+nav ul li:focus-within > ul {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -97,7 +98,8 @@ nav ul li ul li {
   white-space: nowrap;
 }
 
-nav ul li ul li:hover, nav ul li ul li:focus {
+nav ul li ul li:hover,
+nav ul li ul li:focus {
   color: white;
   background: #7c67f6;
 }
@@ -123,8 +125,17 @@ nav .login-btn {
   box-shadow: 0 0 15px 2px #f89e1a;
 }
 
-nav .login-btn:hover, nav .login-btn:focus {
+nav .login-btn:hover,
+nav .login-btn:focus {
   box-shadow: 0 0 25px 4px #fcbf49;
+}
+
+/* ---------- HAMBURGER ---------- */
+nav .menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
 }
 
 /* ---------- MAIN ---------- */
@@ -254,15 +265,78 @@ main h2 {
   to { transform: translateY(6px); }
 }
 
-/* ---------- MEDIA QUERY ---------- */
-@media (max-width: 720px) {
-  main h1 {
-    font-size: 8vw;
+/* ---------- MEDIA QUERIES ---------- */
+@media (max-width: 1024px) {
+  nav ul {
+    gap: 2rem;
   }
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: #2b264d;
+    padding: 1rem 0;
+    gap: 1rem;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+  }
+
+  nav ul.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  nav .menu-toggle {
+    display: block;
+  }
+
+  nav .right-controls {
+    display: none; /* hide login button if needed */
+  }
+
+  main {
+    padding: 0 10vw;
+  }
+
+  main h1 {
+    font-size: 7vw;
+  }
+
   main h2 {
     font-size: 5vw;
-    border-right: 2.5px solid #cda8ff;
   }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0 8vw;
+  }
+
+  main h1 {
+    font-size: 9vw;
+  }
+
+  main h2 {
+    font-size: 6vw;
+  }
+
   .avatar {
     width: 90px;
     height: 90px;

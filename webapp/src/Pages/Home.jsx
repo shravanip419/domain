@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom"; // 👈 import router link
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 import math1 from "../assets/math1.jpeg";
@@ -26,16 +26,34 @@ const avatarData = [
 ];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <nav aria-label="Primary">
         <div className="logo" aria-label="Domain logo">
           Domain
         </div>
-        <ul>
+
+        {/* 👇 Hamburger menu toggle */}
+        <div
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation menu"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </div>
+
+        {/* 👇 Nav list */}
+        <ul className={menuOpen ? "show" : ""}>
           {navItems.map((item, i) => (
             <li key={i} tabIndex="0" aria-haspopup={item.subItems ? "true" : undefined}>
-              <Link to={item.path}>{item.label}</Link> {/* 👈 link added */}
+              <Link to={item.path} onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </Link>
               {item.subItems && (
                 <ul aria-label={`${item.label} submenu`}>
                   {item.subItems.map((sub, idx) => (
@@ -48,12 +66,15 @@ export default function Home() {
             </li>
           ))}
         </ul>
-        {/* <div className="right-controls">
-          <div>ENG</div>
+
+        {/* (optional right controls) */}
+        {/* 
+        <div className="right-controls">
           <button className="login-btn" aria-label="Login to your account">
             Login
           </button>
-        </div> */}
+        </div> 
+        */}
       </nav>
 
       <main role="main">
@@ -74,7 +95,11 @@ export default function Home() {
             const className = `avatar ${a.bg}`;
             return (
               <div className={className} style={style} key={i}>
-                <img src={a.src} alt={a.alt} onError={(e) => (e.target.style.display = "none")} />
+                <img
+                  src={a.src}
+                  alt={a.alt}
+                  onError={(e) => (e.target.style.display = "none")}
+                />
               </div>
             );
           })}
