@@ -48,12 +48,12 @@ export default function Home() {
             </li>
           ))}
         </ul>
-        <div className="right-controls">
+        {/* <div className="right-controls">
           <div>ENG</div>
           <button className="login-btn" aria-label="Login to your account">
             Login
           </button>
-        </div>
+        </div> */}
       </nav>
 
       <main role="main">

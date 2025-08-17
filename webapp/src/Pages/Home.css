@@ -38,10 +38,12 @@ nav ul {
   flex: 1 1 auto;
   list-style: none;
   display: flex;
-  gap: 1.5rem;
-  margin-left: 2rem;
+  gap: 5rem;
+  justify-content: center;  /* center horizontally */
+  margin-left: 0;           /* remove that left push */
   padding-left: 0;
 }
+
 nav ul li a {
   color: #ddd;          /* normal color */
   text-decoration: none; /* remove underline */
