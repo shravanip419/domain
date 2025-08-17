@@ -57,10 +57,9 @@ export default function Navbar() {
         ))}
       </ul>
 
-      {/* Optional right-side controls */}
-      {/* <div className="right-controls">
-        <button className="login-btn">Login</button>
-      </div> */}
+     <div className="right-controls">
+       <Link to="/" className="login-btn">Home</Link>
+      </div> 
     </nav>
   );
 }
