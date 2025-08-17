@@ -178,11 +178,11 @@ main h2 {
   font-size: 3vw;
   font-weight: 800;
   color: #8a86c3;
-  max-width: 650px;
+  max-width: 711px;
   border-right: 3px solid #cda8ff;
   white-space: nowrap;
   overflow: hidden;
-  animation: typing 3s steps(20) forwards;
+  animation: typing 3s steps(22) forwards, blink 0.75s step-end infinite;
   user-select: none;
 }
 

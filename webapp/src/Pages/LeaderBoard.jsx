@@ -1,7 +1,7 @@
 import { PlayerCard } from "../Components/Playercard";
 import { Trophy } from "lucide-react";
 import "./LeaderBoard.css";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
 
 const leaderboardData = [
   { id: 1, name: "Mr_X",   rank: 1 },
