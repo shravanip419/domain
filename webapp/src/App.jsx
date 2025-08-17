@@ -1,12 +1,16 @@
-import {BrowserRouter,Route,Routes} from 'react-router-dom';
-import  Leaderboard  from './Pages/LeaderBoard';
-import Home from './Pages/Home';
-function App()
-{
-  return <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Home/>}/>
-  </Routes>
-  </BrowserRouter>
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Leaderboard from "./pages/Leaderboard";
+import Home from "./pages/Home";
+
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+       </Routes>
+    </Router>
+  );
 }
-export default App;
