@@ -17,9 +17,10 @@ const leaderboardData = [
   const topThree = leaderboardData.slice(0, 3);
   const restOfPlayers = leaderboardData.slice(3);
 
-  return (
+  return (<>
+    <Navbar />
     <div className="leaderboard-container">
-      <Navbar />
+      
       <div className="leaderboard-page">
         {/* Header */}
         <div className="leaderboard-header">
@@ -84,6 +85,7 @@ const leaderboardData = [
         </div>
       </div>
     </div>
+    </>
   );
 }
 export default Leaderboard

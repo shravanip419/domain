@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import "./Team.css";
 import teamBanner from "../assets/team-banner.png"; // replace with your uploaded image path
+import Navbar from "../components/Navbar"; 
 
 // Import member photos
 import maya from "../assets/maya.png";
@@ -33,8 +34,11 @@ const teamMembers = [
 ];
 
 const Team = () => {
-  return (
+  return (<>
+    <Navbar />
+    
     <div className="team-container">
+    
       {/* Top Banner */}
       <div className="team-banner">
         <img src={teamBanner} alt="Team Banner" />
@@ -67,6 +71,7 @@ const Team = () => {
         ))}
       </div>
     </div>
+     </>
   );
 };
 
