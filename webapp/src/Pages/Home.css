@@ -342,3 +342,28 @@ main h2 {
     height: 90px;
   }
 }
+@keyframes floaty {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.avatar {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+.avatar:nth-child(2) { animation-duration: 8s; }
+.avatar:nth-child(3) { animation-duration: 7s; }
+.avatar:nth-child(4) { animation-duration: 9s; }
+.avatar:nth-child(5) { animation-duration: 10s; }
+main h1 .highlight {
+  border: 5px solid #aa97f5;
+  border-radius: 100px;
+  animation: drawBox 1.5s ease forwards;
+}
+
+@keyframes drawBox {
+  0% { width: 0; height: 0; opacity: 0; }
+  50% { width: 400px; height: 0; opacity: 1; }
+  100% { width: 400px; height: 100px; }
+}
