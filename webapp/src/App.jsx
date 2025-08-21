@@ -7,6 +7,7 @@ import Faculty from "./Pages/Faculty";
 import Puzzle from "./Pages/WeeklyPuzzle";
 
 
+
 export default function App() {
   return (
     <Router>
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/Team" element={<Team />} />
         <Route path="/Faculty" element={<Faculty />} />
         <Route path="/Puzzle" element={<Puzzle />} />
+        
         
         
        </Routes>
