@@ -4,6 +4,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Home from "./Pages/Home";
 import Team from "./pages/Team";
 import Faculty from "./Pages/Faculty";
+import Puzzle from "./Pages/WeeklyPuzzle";
 
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/Team" element={<Team />} />
         <Route path="/Faculty" element={<Faculty />} />
+        <Route path="/Puzzle" element={<Puzzle />} />
         
         
        </Routes>

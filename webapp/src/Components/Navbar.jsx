@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 const navItems = [
   { label: "About Us", path: "/about", subItems: ["Sub 1", "Sub 2"] },
-  { label: "Weekly Puzzles", path: "/puzzles" },
+  { label: "Weekly Puzzles", path: "/Puzzle" },
   { label: "Leaderboard", path: "/leaderboard" },
   { label: "Faculty", path: "/faculty" },
   { label: "Team", path: "/team" },
@@ -16,12 +16,12 @@ export default function Navbar() {
 
   return (
     <nav aria-label="Primary">
-      {/* Logo */}
+      
       <div className="logo" aria-label="Domain logo">
         <Link to="/" className="DomainLogo" >Domain</Link>
       </div>
 
-      {/* Hamburger toggle */}
+      
       <div
         className="menu-toggle"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -33,7 +33,7 @@ export default function Navbar() {
         ☰
       </div>
 
-      {/* Nav items */}
+      
       <ul className={menuOpen ? "show" : ""}>
         {navItems.map((item, i) => (
           <li
