@@ -27,7 +27,7 @@ export default function WeeklyPuzzle() {
     <Navbar/>
     
     <div className="puzzle-container">
-      <h2 className="title">🧩 Weekly Puzzle</h2>
+      <h2 className="title">Weekly Puzzle</h2>
       <p className="question">{puzzle.question}</p>
 
       <input

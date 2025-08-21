@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "About Us", path: "/about", subItems: ["Sub 1", "Sub 2"] },
-  { label: "Weekly Puzzles", path: "/Puzzle" },
+  { label: "About Us", path: "/about" }, // ✅ no submenu
+  { label: "Weekly Puzzles", path: "/puzzle" }, 
   { label: "Leaderboard", path: "/leaderboard" },
   { label: "Faculty", path: "/faculty" },
   { label: "Team", path: "/team" },
@@ -16,12 +16,12 @@ export default function Navbar() {
 
   return (
     <nav aria-label="Primary">
-      
+      {/* Logo */}
       <div className="logo" aria-label="Domain logo">
-        <Link to="/" className="DomainLogo" >Domain</Link>
+        <Link to="/" className="DomainLogo">Domain</Link>
       </div>
 
-      
+      {/* Hamburger Menu for small screens */}
       <div
         className="menu-toggle"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -33,33 +33,16 @@ export default function Navbar() {
         ☰
       </div>
 
-      
+      {/* Nav Links */}
       <ul className={menuOpen ? "show" : ""}>
         {navItems.map((item, i) => (
-          <li
-            key={i}
-            tabIndex="0"
-            aria-haspopup={item.subItems ? "true" : undefined}
-          >
+          <li key={i} tabIndex="0">
             <Link to={item.path} onClick={() => setMenuOpen(false)}>
               {item.label}
             </Link>
-            {item.subItems && (
-              <ul aria-label={`${item.label} submenu`}>
-                {item.subItems.map((sub, idx) => (
-                  <li key={idx} tabIndex="-1">
-                    {sub}
-                  </li>
-                ))}
-              </ul>
-            )}
           </li>
         ))}
       </ul>
-
-     {/* <div className="right-controls">
-       <Link to="/" className="login-btn">Home</Link>
-      </div>  */}
     </nav>
   );
 }
