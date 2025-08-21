@@ -131,3 +131,9 @@ nav .menu-toggle {
     gap: 1rem;
   }
 }
+.DomainLogo {
+  color: #b7aefc;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.6rem;
+}

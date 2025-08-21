@@ -18,7 +18,7 @@ export default function Navbar() {
     <nav aria-label="Primary">
       {/* Logo */}
       <div className="logo" aria-label="Domain logo">
-        Domain
+        <Link to="/" className="DomainLogo" >Domain</Link>
       </div>
 
       {/* Hamburger toggle */}
@@ -57,9 +57,9 @@ export default function Navbar() {
         ))}
       </ul>
 
-     <div className="right-controls">
+     {/* <div className="right-controls">
        <Link to="/" className="login-btn">Home</Link>
-      </div> 
+      </div>  */}
     </nav>
   );
 }
