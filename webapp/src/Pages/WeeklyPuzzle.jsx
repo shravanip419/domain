@@ -16,9 +16,9 @@ export default function WeeklyPuzzle() {
 
   const checkAnswer = () => {
     if (userAnswer.trim() === puzzle.answer) {
-      setFeedback("🎉 Correct! You cracked it!");
+      setFeedback(" Correct! You cracked it!");
     } else {
-      setFeedback("❌ Oops! Try again.");
+      setFeedback("Oops! Try again.");
     }
   };
 
