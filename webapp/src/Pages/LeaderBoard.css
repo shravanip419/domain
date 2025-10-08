@@ -405,7 +405,7 @@ margin: 0;
 /* Icons */
 .trophy-icon, .medal-icon, .award-icon {
   width: 16px;
-  height: 16px;
+  height: 16px; 
 }
 
 .trophy-icon-lg, .medal-icon-lg, .award-icon-lg {
