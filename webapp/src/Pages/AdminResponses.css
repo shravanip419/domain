@@ -1,0 +1,55 @@
+.admin-responses-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background: #1a1a2e;
+    color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 15px rgba(170, 120, 255, 0.6);
+}
+
+.responses-title {
+    font-size: 2rem;
+    color: #c084fc;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.responses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.response-card {
+    background: #16213e;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 5px solid #8b5cf6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.response-card h3 {
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #fcd34d;
+}
+
+.response-card p {
+    margin: 0.5rem 0;
+}
+
+.timestamp {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 1rem;
+    border-top: 1px dashed #30363d;
+    padding-top: 0.5rem;
+}
+
+.responses-error {
+    color: #f87171;
+    text-align: center;
+    margin-bottom: 1rem;
+}

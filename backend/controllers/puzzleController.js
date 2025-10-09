@@ -1,59 +1,28 @@
-import Puzzle from "../models/Puzzle.js";
+const express = require('express');
+const { 
+    getPuzzles, 
+    getPuzzleById, 
+    addPuzzle, 
+    updatePuzzle, 
+    deletePuzzle 
+} = require('../controllers/puzzleController');
+const { protect, admin } = require('../middleware/authMiddleware');
 
-// get all puzzles, sorted by creation date (newest first)
-export const getPuzzles = async (req, res) => {
-  try {
-    // Sort by _id descending (-1) to ensure the latest puzzle 
-    // is the first element in the array (index 0).
-    const puzzles = await Puzzle.find().sort({ _id: -1 });
-    res.json(puzzles);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+const router = express.Router();
 
-// get single puzzle by ID
-export const getPuzzleById = async (req, res) => {
-  try {
-    const puzzle = await Puzzle.findById(req.params.id);
-    if (!puzzle) return res.status(404).json({ message: "Not found" });
-    res.json(puzzle);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+// Public Routes (no login required)
+router.get('/', getPuzzles);
+router.get('/:id', getPuzzleById);
 
-// add puzzle (admin)
-export const addPuzzle = async (req, res) => {
-  try {
-    const newPuzzle = new Puzzle(req.body);
-    await newPuzzle.save();
-    res.status(201).json(newPuzzle);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
+// Admin Protected Routes (requires login and 'admin' role)
+// POST route to add a new puzzle
+router.post('/', protect, admin, addPuzzle);
 
-// update puzzle
-export const updatePuzzle = async (req, res) => {
-  try {
-    const puzzle = await Puzzle.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    // Check if the puzzle was found and updated
-    if (!puzzle) return res.status(404).json({ message: "Puzzle not found" });
-    res.json(puzzle);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
+// PUT route to update an existing puzzle (Requires Admin Role)
+// NOTE: We don't have a frontend for this yet, but the route is protected.
+router.put('/:id', protect, admin, updatePuzzle);
 
-// delete puzzle
-export const deletePuzzle = async (req, res) => {
-  try {
-    const result = await Puzzle.findByIdAndDelete(req.params.id);
-    // Check if a puzzle was actually deleted
-    if (!result) return res.status(404).json({ message: "Puzzle not found" });
-    res.json({ message: "Deleted successfully" });
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-};
+// DELETE route to delete a puzzle
+router.delete('/:id', protect, admin, deletePuzzle);
+
+module.exports = router;
