@@ -4,20 +4,25 @@ import Leaderboard from "./Pages/LeaderBoard";
 import Home from "./Pages/Home";
 import Team from "./Pages/Team";
 import Faculty from "./Pages/Faculty";
-import Puzzle from "./Pages/WeeklyPuzzle";
+import WeeklyPuzzle from "./Pages/WeeklyPuzzle";
 import AdminPuzzle from "./Pages/AdminPuzzle"; 
+import './App.css'; 
+
 
 export default function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/faculty" element={<Faculty />} />
-        <Route path="/puzzle" element={<Puzzle />} />
-        <Route path="/admin" element={<AdminPuzzle />} /> 
-      </Routes>
-    </Router>
-  );
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/faculty" element={<Faculty />} />
+        
+        {/* CHANGED: Route now matches the shorter '/puzzle' path */}
+        <Route path="/puzzle" element={<WeeklyPuzzle />} /> 
+        
+        <Route path="/admin/add-puzzle" element={<AdminPuzzle />} /> 
+      </Routes>
+    </Router>
+  );
 }
