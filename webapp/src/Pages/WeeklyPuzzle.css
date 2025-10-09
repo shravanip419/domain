@@ -1,64 +1,132 @@
+/* web/src/Pages/WeeklyPuzzle.css */
+
 .puzzle-container {
-  text-align: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, #1a1a2e, #16213e);
-  color: #fff;
-  border-radius: 20px;
-  max-width: 700px;
-  margin: 2rem auto;
-  box-shadow: 0px 0px 15px rgba(170, 120, 255, 0.6);
+ text-align: center; padding: 2rem;
+ background: linear-gradient(135deg, #1a1a2e, #16213e);
+ color: #fff;
+ border-radius: 20px;
+ max-width: 700px;
+ margin: 2rem auto;
+ box-shadow: 0px 0px 15px rgba(170, 120, 255, 0.6);
 }
+
+/* --- New Styles for Admin Button Integration --- */
+.title-bar {
+    /* Set up flexbox to align content */
+    display: flex;
+    /* Horizontally center the main content (the title) */
+    justify-content: center; 
+    align-items: center;
+    /* Essential: Allows the button to be absolutely positioned relative to this bar */
+    position: relative; 
+    margin-bottom: 20px;
+}
+/* --- End New Styles --- */
 
 .title {
-  font-size: 2rem;
-  color: #c084fc;
-  margin-bottom: 1rem;
+ font-size: 2rem;
+ color: #c084fc;
+ margin: 0; /* Important: Reset default margin from h2 */
 }
 
+/* --- Admin Button Style --- */
+.add-puzzle-btn {
+    /* Position the button on the far right of the title-bar */
+    position: absolute;
+    right: 0; 
+    
+    /* Style for the '+' button */
+    background-color: #4CAF50; /* Green for add action */
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1; 
+    width: 35px;
+    height: 35px;
+    border-radius: 50%; /* Makes it a circle */
+    padding: 0; /* Remove default padding from .btn */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex; /* Helps center the '+' sign */
+    align-items: center;
+    justify-content: center;
+}
+
+.add-puzzle-btn:hover {
+    background-color: #45a049;
+}
+/* --- End Admin Button Style --- */
+
+
 .question {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+font-size: 1.2rem;
+ margin-bottom: 1.5rem;
 }
 
 .answer-input {
-  padding: 10px;
-  width: 60%;
-  border: none;
-  border-radius: 10px;
-  outline: none;
-  margin-bottom: 1rem;
-  font-size: 1rem;
-  text-align: center;
+ padding: 10px;
+ width: 60%;
+ border: none;
+ border-radius: 10px;
+ outline: none;
+ margin-bottom: 1rem;
+ font-size: 1rem;
+ text-align: center;
 }
 
 .buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+ display: flex;
+ justify-content: center;
+ gap: 1rem;
 }
 
 .btn {
-  padding: 10px 20px;
-  background: #8b5cf6;
-  border: none;
-  border-radius: 12px;
-  color: white;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
+ padding: 10px 20px;
+ background: #8b5cf6;
+ border: none;
+ border-radius: 12px;
+ color: white;
+font-size: 1rem;
+ cursor: pointer;
+ transition: 0.3s;
 }
 
 .btn:hover {
-  background: #6d28d9;
+ background: #6d28d9;
 }
 
 .hint {
-  margin-top: 1rem;
-  font-style: italic;
-  color: #fcd34d;
+ margin-top: 1rem;
+ font-style: italic;
+color: #fcd34d;
 }
 
 .feedback {
-  margin-top: 1rem;
-  font-weight: bold;
+margin-top: 1rem;
+ font-weight: bold;
+}
+/* Separator for individual puzzles */
+.single-puzzle-card {
+    border-bottom: 2px solid rgba(192, 132, 252, 0.3); /* Light purple line */
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+}
+
+/* Remove the border from the very last puzzle */
+.single-puzzle-card:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+/* web/src/Pages/WeeklyPuzzle.css (Add this to your existing styles) */
+
+/* Style for the Delete Button */
+.delete-btn {
+    background-color: #f44336; /* Red color */
+    margin-left: 10px; /* Add some space from the hint button */
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f; /* Darker red on hover */
 }

@@ -1,60 +1,167 @@
-import React, { useState } from "react";
+// web/src/Pages/WeeklyPuzzle.jsx
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; 
 import "./WeeklyPuzzle.css";
 import Navbar from "../components/Navbar"; 
 
+const API_BASE_URL = "http://localhost:4000/api/puzzles"; // Define base URL
+
 export default function WeeklyPuzzle() {
-  const puzzle = {
-    question:
-      "I am a three-digit number. My tens digit is five more than my ones digit, and my hundreds digit is eight less than my tens digit. What number am I?",
-    answer: "194",
-    hint: "Think about the relationship between hundreds, tens, and ones."
-  };
+  const [puzzles, setPuzzles] = useState([]); 
+  const [userAnswer, setUserAnswer] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [showHint, setShowHint] = useState(false);
+  const [loading, setLoading] = useState(true);
+  
+  // Placeholder for admin role
+  const [isAdmin, setIsAdmin] = useState(true); 
 
-  const [userAnswer, setUserAnswer] = useState("");
-  const [feedback, setFeedback] = useState("");
-  const [showHint, setShowHint] = useState(false);
+  const navigate = useNavigate(); 
 
-  const checkAnswer = () => {
-    if (userAnswer.trim() === puzzle.answer) {
-      setFeedback(" Correct! You cracked it!");
-    } else {
-      setFeedback("Oops! Try again.");
+    // Function to fetch all puzzles
+    const fetchPuzzles = () => {
+        setLoading(true);
+        axios.get(API_BASE_URL) 
+            .then((res) => {
+                setPuzzles(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Error fetching puzzles:", err);
+                setFeedback("Error: Could not connect to the puzzle server.");
+                setLoading(false);
+            });
+    };
+
+  useEffect(() => {
+        fetchPuzzles();
+  }, []);
+
+  const handleAnswerChange = (e) => {
+    setUserAnswer(e.target.value);
+    setFeedback("");
+    setShowHint(false);
+  };
+
+  // Function to handle the DELETE request
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this puzzle?")) {
+        return; // Exit if the admin cancels the confirmation
+    }
+
+    try {
+        await axios.delete(`${API_BASE_URL}/${id}`);
+        
+        // Update the state to remove the deleted puzzle instantly
+        setPuzzles(puzzles.filter(p => p._id !== id));
+        setFeedback("✅ Puzzle deleted successfully!");
+
+    } catch (error) {
+        console.error("Error deleting puzzle:", error);
+        setFeedback("❌ Failed to delete puzzle.");
     }
   };
 
-  return (
-    <>
-    <Navbar/>
-    
-    <div className="puzzle-container">
-      <h2 className="title">Weekly Puzzle</h2>
-      <p className="question">{puzzle.question}</p>
+  const checkAnswer = (correctAnswer) => {
+    if (!correctAnswer) return;
 
-      <input
-        type="text"
-        placeholder="Enter your answer"
-        value={userAnswer}
-        onChange={(e) => setUserAnswer(e.target.value)}
-        className="answer-input"
-      />
+    const normalizedUserAnswer = userAnswer.trim().toLowerCase();
+    const normalizedCorrectAnswer = correctAnswer.trim().toLowerCase();
 
-      <div className="buttons">
-        <button onClick={checkAnswer} className="btn">
-          Submit
-        </button>
-        <button
-          onClick={() => setShowHint(!showHint)}
-          className="btn hint-btn"
-        >
-          {showHint ? "Hide Hint" : "Show Hint"}
-        </button>
-      </div>
+    if (normalizedUserAnswer === normalizedCorrectAnswer) {
+      setFeedback("✅ Correct! You cracked it!");
+    } else {
+      setFeedback("❌ Oops! Try again.");
+    }
+  };
 
-      {showHint && <p className="hint">💡 Hint: {puzzle.hint}</p>}
-      {feedback && <p className="feedback">{feedback}</p>}
-    </div>
-    </>
-    
-  );
-  
+  const handleAddPuzzleClick = () => {
+    navigate("/admin/add-puzzle"); 
+  };
+
+  // --- Rendering Logic ---
+
+  const renderPuzzles = () => {
+    if (loading) {
+      return <p>Loading puzzles...</p>;
+    }
+    
+    if (puzzles.length === 0) {
+        if (isAdmin) {
+            return (
+                <p>
+                    No puzzles available. Click the '+' button to add the first one.
+                </p>
+            );
+        }
+        return <p>No puzzles are available right now. Check back soon!</p>;
+    }
+
+    // Use map to iterate and display ALL puzzles
+    return puzzles.map((puzzle, index) => (
+      <div key={puzzle._id || index} className="single-puzzle-card"> 
+            
+            {/* Display puzzle question */}
+            <p className="question">Puzzle {puzzles.length - index}: {puzzle.question}</p> 
+
+            <input
+              type="text"
+              placeholder="Enter your answer"
+              value={userAnswer}
+              onChange={handleAnswerChange}
+              className="answer-input"
+            />
+
+            <div className="buttons">
+              <button onClick={() => checkAnswer(puzzle.answer)} className="btn">
+                Submit
+              </button>
+              <button
+                onClick={() => setShowHint(!showHint)}
+                className="btn hint-btn"
+              >
+                {showHint ? "Hide Hint" : "Show Hint"}
+              </button>
+
+                {/* DELETE Button visible only to Admin */}
+                {isAdmin && (
+                    <button 
+                        onClick={() => handleDelete(puzzle._id)} 
+                        className="btn delete-btn"
+                    >
+                        Delete
+                    </button>
+                )}
+            </div>
+
+            {showHint && <p className="hint">💡 Hint: {puzzle.hint}</p>}
+            {feedback && <p className="feedback">{feedback}</p>}
+          </div>
+    ));
+  };
+
+  return (
+    <>
+      <Navbar />
+      <div className="puzzle-container">
+            <div className="title-bar"> 
+                <h2 className="title">All Puzzles</h2>
+                {isAdmin && (
+                    <button
+                        className="btn add-puzzle-btn"
+                        onClick={handleAddPuzzleClick}
+                        title="Add New Puzzle"
+                    >
+                        +
+                    </button>
+                )}
+            </div>
+            {renderPuzzles()}
+            {/* Feedback is shown at the end of the container, which is fine for shared feedback */}
+            {!loading && feedback && <p className="feedback">{feedback}</p>} 
+      </div>
+    </>
+  );
 }
