@@ -20,3 +20,4 @@ router.put("/:id", protect, admin, updatePuzzle);  // Only admin can update
 router.delete("/:id", protect, admin, deletePuzzle); // Only admin can delete
 
 module.exports = router;
+export default router;
