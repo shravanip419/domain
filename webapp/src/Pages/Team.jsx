@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./Team.css";
-import teamBanner from "../assets/member_photos/group_photo1.png"; // replace with your uploaded image path
+// import teamBanner from "https://res.cloudinary.com/dztzai54z/image/upload/v1760462045/69upscale_upscayl_uxaaf1.jpg"; // replace with your uploaded image path
 import Navbar from "../components/Navbar"; 
 
 
@@ -141,7 +141,7 @@ const Team = () => {
     
       
       <div className="team-banner">
-        <img src={teamBanner}
+        <img src="https://res.cloudinary.com/dztzai54z/image/upload/v1760462045/69upscale_upscayl_uxaaf1.jpg" 
         alt="Team Banner" />
       </div> 
 
