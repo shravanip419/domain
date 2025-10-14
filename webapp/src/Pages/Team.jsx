@@ -1,67 +1,45 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./Team.css";
-import teamBanner from "../assets/member_photos/group_photo.png"; // replace with your uploaded image path
+import teamBanner from "../assets/member_photos/group_photo1.png"; // replace with your uploaded image path
 import Navbar from "../components/Navbar"; 
 
-// Import member photos
-// import piyush from "../assets/member_photos/piyush.png";
-// import kapil from "../assets/member_photos/kapil.png";
-// import saumya from "../assets/member_photos/saumya.png";
-// import jaeden from "../assets/member_photos/jaeden.png";
-// import clive from "../assets/member_photos/clive.png";
-// import shravani from "../assets/member_photos/shravani.png";
-// import zayaan from "../assets/member_photos/zayyan.png";
-// import himanshu from "../assets/member_photos/himanshu.png";
-// import ankita from "../assets/member_photos/ankita.png";
-// import aayush from "../assets/member_photos/aayush.png";
-// import arsia from "../assets/member_photos/arsia.png";
-// import aditya from "../assets/member_photos/aditya.png";
-// import sabnis from "../assets/member_photos/sabnis.png";
-// import puzzle1 from "../assets/member_photos/puzzle1.png";
-// import puzzle2 from "../assets/member_photos/puzzle2.png";
-// import puzzle3 from "../assets/member_photos/puzzle3.png";
-// import puzzle4 from "../assets/member_photos/puzzle4.png";
-// import krushnali from "../assets/member_photos/krushnali.png";
-// import liston from "../assets/member_photos/liston.png";
-// // import tanvi from "https://res.cloudinary.com/dztzai54z/image/upload/v1760455495/tanvi_dq1mc3.png";
-// import rex from "../assets/member_photos/rex.png";
 
 const teamMembers = [
   {
     name: "Kapil Labde",
     role: "Chairperson",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455452/kapil_rdspkk.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455452/kapil_rdspkk.png",
   },
   {
     name: "Piyush Mistry",
     role: "Vice Chairperson",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455479/piyush_jx5pcf.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455479/piyush_jx5pcf.png",
   },
   {
     name: "Himanshu Firke",
     role: "PR Head",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455457/himanshu_qeljaj.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455457/himanshu_qeljaj.png",
   },
   {
     name: "Aditya Menon",
     role: "Puzzle Head",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455455/aditya_flnrc8.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455455/aditya_flnrc8.png",
   },
   {
     name: "Saumya Onnya",
     role: "Coordination Head",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455478/saumya_mo4tqm.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455478/saumya_mo4tqm.png",
   },
   {
     name: "Krushnali Mungekar",
     role: "Design Head",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455472/krushnali_shevpg.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455472/krushnali_shevpg.png",
   },
   {
     name: "Shaun",
     role: "Ideation Head",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455483/shaun_koy432.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455483/shaun_koy432.png",
   },
   
   
@@ -69,87 +47,87 @@ const teamMembers = [
   {
     name: "Ankita Gadre",
     role: "PR Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455480/ankita_ittlvb.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455480/ankita_ittlvb.png",
   },
   {
     name: "Aayush Pulkundwar",
     role: "PR Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455441/aayush_d8mw2y.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455441/aayush_d8mw2y.png",
   },
   {
     name: "Arsia Huller",
     role: "PR Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455450/arsia_uuuiqo.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455450/arsia_uuuiqo.png",
   },
  
   
   {
     name: "Aditya Sabnis",
     role: "Puzzle Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455464/sabnis_mva1lv.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455464/sabnis_mva1lv.png",
   },
   {
     name: "xyz",
     role: "Puzzle Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455477/puzzle2_k6knle.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455477/puzzle2_k6knle.png",
   },
   {
     name: "xyz",
     role: "Puzzle Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455445/puzzle4_rqnghv.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455445/puzzle4_rqnghv.png",
   },
   {
     name: "xyz",
     role: "Puzzle Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455444/puzzle1_hspcin.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455444/puzzle1_hspcin.png",
   },
   {
     name: "xyz",
     role: "Puzzle Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455460/puzzle3_fnvsxm.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455460/puzzle3_fnvsxm.png",
   },
   {
     name: "Shravani Pokale",
     role: "Finance Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455483/shravani_j3klrx.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455483/shravani_j3klrx.png",
   },
   {
     name: "Zayyan Shaikh",
     role: "Finance Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455488/zayyan_zf2es7.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455488/zayyan_zf2es7.png",
   },
 
    {
     name: "Jaeden D'Souza",
     role: "Coordination Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455458/jaeden_aiqktu.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455458/jaeden_aiqktu.png",
   },
   {
     name: "Clive",
     role: "Coordination Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455466/clive_stcwcm.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455466/clive_stcwcm.png",
   },
   
   {
     name: "Liston D'Souza",
     role: "Design Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455474/liston_ffrnnp.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455474/liston_ffrnnp.png",
   },
   {
     name: "Tanvi Patil",
     role: "Design Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455495/tanvi_dq1mc3.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455495/tanvi_dq1mc3.png",
   },
   {
     name: "Rex",
     role: "Design Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455464/rex_rvfrn9.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455464/rex_rvfrn9.png",
   },
   
   {
     name: "Atharva Jahagirdar",
     role: "Ideation Team",
-    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760455448/atharva_1_sftkyt.png",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455448/atharva_1_sftkyt.png",
   },
 
 
@@ -163,7 +141,8 @@ const Team = () => {
     
       
       <div className="team-banner">
-        <img src={teamBanner} alt="Team Banner" />
+        <img src={teamBanner}
+        alt="Team Banner" />
       </div> 
 
       {/* Section Title */}
@@ -186,6 +165,7 @@ const Team = () => {
               src={member.img}
               alt={member.name}
               className="member-photo"
+              loading="lazy"
             />
             <h3 className="mini-name">{member.name}</h3>
             <p className="mini-role">{member.role}</p>
