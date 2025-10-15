@@ -1,50 +1,37 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+// authMiddleware.js
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-// Middleware to protect routes (checks for a valid JWT token)
-exports.protect = async (req, res, next) => {
-    let token;
+// Protect routes (checks for valid JWT)
+export const protect = async (req, res, next) => {
+  let token;
 
-    // Check for token in headers (usually sent as 'Bearer <token>')
-    if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-        try {
-            // Extract the token part
-            token = req.headers.authorization.split(' ')[1];
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    try {
+      token = req.headers.authorization.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'YOUR_SUPER_SECRET_KEY');
+      const user = await User.findById(decoded.id).select('-password');
 
-            // Verify token and decode user ID and role
-            const decoded = jwt.verify(token, process.env.JWT_SECRET || 'YOUR_SUPER_SECRET_KEY');
+      if (!user) return res.status(401).json({ message: 'Not authorized, user not found' });
 
-            // Find user, but exclude password from being returned
-            const user = await User.findById(decoded.id).select('-password');
-
-            if (!user) {
-                return res.status(401).json({ message: 'Not authorized, user not found' });
-            }
-
-            // Attach user data to the request object for use in the controller
-            req.user = user;
-            next();
-
-        } catch (error) {
-            console.error(error);
-            // If token is invalid, expired, or verification fails
-            res.status(401).json({ message: 'Not authorized, token failed or expired' });
-        }
+      req.user = user;
+      next();
+    } catch (err) {
+      console.error(err);
+      res.status(401).json({ message: 'Not authorized, token failed' });
     }
+  }
 
-    if (!token) {
-        // If no token is provided at all
-        res.status(401).json({ message: 'Not authorized, no token' });
-    }
+  if (!token) {
+    res.status(401).json({ message: 'Not authorized, no token' });
+  }
 };
 
-// Middleware to check if the authenticated user is an admin
-exports.admin = (req, res, next) => {
-    // req.user is populated by the 'protect' middleware
-    if (req.user && req.user.role === 'admin') {
-        next(); // User is an admin, proceed
-    } else {
-        // User is logged in but not an admin
-        res.status(403).json({ message: 'Not authorized as an admin' });
-    }
+// Admin check middleware
+export const admin = (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).json({ message: 'Not authorized as an admin' });
+  }
 };

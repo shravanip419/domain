@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config'; // for .env variables
 import puzzleRoutes from './routes/puzzleRoutes.js';
-// import authRoutes from './routes/authRoutes.js'; // uncomment when ready
+import authRoutes from './routes/authRoutes.js'; 
 import { upload } from './config/cloudinaryConfig.js'; // 👈 Cloudinary setup
 
 // Initialize app
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 // Puzzle routes
 app.use('/api/puzzles', puzzleRoutes);
 
-// app.use('/api/auth', authRoutes); // enable later
+app.use('/api/auth', authRoutes); 
 
 // ---------------- CLOUDINARY UPLOAD ROUTE ---------------- //
 app.post('/api/upload', upload.single('image'), async (req, res) => {

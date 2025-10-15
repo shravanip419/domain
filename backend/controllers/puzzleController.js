@@ -1,28 +1,85 @@
-const express = require('express');
-const { 
-    getPuzzles, 
-    getPuzzleById, 
-    addPuzzle, 
-    updatePuzzle, 
-    deletePuzzle 
-} = require('../controllers/puzzleController');
-const { protect, admin } = require('../middleware/authMiddleware');
 
-const router = express.Router();
+import { Puzzle, Response } from '../models/Puzzle.js';
 
-// Public Routes (no login required)
-router.get('/', getPuzzles);
-router.get('/:id', getPuzzleById);
 
-// Admin Protected Routes (requires login and 'admin' role)
-// POST route to add a new puzzle
-router.post('/', protect, admin, addPuzzle);
+// Get all puzzles
+export const getPuzzles = async (req, res) => {
+  try {
+    const puzzles = await Puzzle.find();
+    res.json(puzzles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error fetching puzzles' });
+  }
+};
 
-// PUT route to update an existing puzzle (Requires Admin Role)
-// NOTE: We don't have a frontend for this yet, but the route is protected.
-router.put('/:id', protect, admin, updatePuzzle);
+// Get a single puzzle by ID
+export const getPuzzleById = async (req, res) => {
+  try {
+    const puzzle = await Puzzle.findById(req.params.id);
+    if (!puzzle) return res.status(404).json({ message: 'Puzzle not found' });
+    res.json(puzzle);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error fetching puzzle' });
+  }
+};
 
-// DELETE route to delete a puzzle
-router.delete('/:id', protect, admin, deletePuzzle);
+// Add a new puzzle (admin only)
+export const addPuzzle = async (req, res) => {
+  try {
+    const { question, answer, hint } = req.body;
 
-module.exports = router;
+    if (!question || !answer) {
+      return res.status(400).json({ message: 'Question and answer are required' });
+    }
+
+    const newPuzzle = new Puzzle({
+      question,
+      answer,
+      hint,
+    });
+
+    const savedPuzzle = await newPuzzle.save();
+    res.status(201).json(savedPuzzle);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error adding puzzle' });
+  }
+};
+
+// Update puzzle by ID (admin only)
+export const updatePuzzle = async (req, res) => {
+  try {
+    const puzzle = await Puzzle.findById(req.params.id);
+    if (!puzzle) return res.status(404).json({ message: 'Puzzle not found' });
+
+    const { question, answer, hint } = req.body;
+    if (question) puzzle.question = question;
+    if (answer) puzzle.answer = answer;
+    if (hint) puzzle.hint = hint;
+
+    const updatedPuzzle = await puzzle.save();
+    res.json(updatedPuzzle);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error updating puzzle' });
+  }
+};
+
+// Delete puzzle by ID (admin only)
+export const deletePuzzle = async (req, res) => {
+  try {
+    const puzzle = await Puzzle.findById(req.params.id);
+    if (!puzzle) return res.status(404).json({ message: 'Puzzle not found' });
+
+    await puzzle.remove();
+    res.json({ message: 'Puzzle deleted successfully' });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error deleting puzzle' });
+  }
+};

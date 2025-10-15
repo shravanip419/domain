@@ -13,24 +13,23 @@ export default function Login() {
     const [error, setError] = useState('');
     const { login } = useContext(AuthContext);
     const navigate = useNavigate();
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-       
         setError('');
 
         try {
-            // Note: Your backend needs a new route (POST /api/auth/login) to handle this
+            // Send login request to backend
             const response = await axios.post(API_BASE_URL, { username, password });
-            
-            const { token, user } = response.data;
 
-            // Save token and user data (including role) in the context
-            login(token, user.username, user.role);
+            // Backend should return: { token, username, role }
+            const { token, username: loggedInUser, role } = response.data;
 
-            // Redirect user based on their role after successful login
-            if (user.role === 'admin') {
+            // Store token and user info in context
+            login(token, loggedInUser, role);
+
+            // Redirect based on role
+            if (role === 'admin') {
                 navigate('/admin/responses');
             } else {
                 navigate('/puzzle');
@@ -42,28 +41,30 @@ export default function Login() {
         }
     };
 
-    return (<> <Navbar />
-        <div className="login-container">
-            <h2 className="login-title">Sign In to Solve Puzzles</h2>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    placeholder="Username (e.g., admin or user)"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password (e.g., 12345)"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                {error && <p className="login-error">{error}</p>}
-                <button type="submit" className="login-btn">Login</button>
-            </form>
-        </div>
+    return (
+        <>
+            <Navbar />
+            <div className="login-container">
+                <h2 className="login-title">Sign In to Solve Puzzles</h2>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Username (e.g., admin or user)"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password (e.g., 12345)"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                    {error && <p className="login-error">{error}</p>}
+                    <button type="submit" className="login-btn">Login</button>
+                </form>
+            </div>
         </>
     );
 }

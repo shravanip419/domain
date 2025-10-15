@@ -26,6 +26,12 @@ const teamMembers = [
     role: "Puzzle Head",
     img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455455/aditya_flnrc8.png",
   },
+  
+  {
+    name: "Yash Patil",
+    role: "Finance Head",
+    img: "https://res.cloudinary.com/dztzai54z/image/upload/v1760539925/Yash_Patil_rgtpxh.png",
+  },
   {
     name: "Saumya Onnya",
     role: "Coordination Head",
