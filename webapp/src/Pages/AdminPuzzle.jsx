@@ -3,22 +3,38 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import "./WeeklyPuzzle.css";
 
-export default function AdminPuzzle() {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [hint, setHint] = useState("");
+export default function AdminLeaderboard() {
+  const [name, setName] = useState("");
+  const [branch, setBranch] = useState("");
+  const [year, setYear] = useState("");
+  const [weekNo, setWeekNo] = useState("");
+  const [score, setScore] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async () => {
     try {
-      await axios.post("http://localhost:4000/api/puzzles", { question, answer, hint });
-      setMessage("✅ Puzzle added successfully!");
-      setQuestion("");
-      setAnswer("");
-      setHint("");
+      if (!name || !branch || !year || !weekNo || score === "") {
+        setMessage("⚠ Please fill all fields before submitting!");
+        return;
+      }
+
+      await axios.post("http://localhost:4000/api/puzzles/update", {
+        name,
+        branch,
+        year,
+        weekNo: parseInt(weekNo),
+        score: parseInt(score),
+      });
+
+      setMessage(" Score updated successfully!");
+      setName("");
+      setBranch("");
+      setYear("");
+      setWeekNo("");
+      setScore("");
     } catch (err) {
-      setMessage("❌ Failed to add puzzle.");
       console.error(err);
+      setMessage(" Failed to update score.");
     }
   };
 
@@ -26,32 +42,50 @@ export default function AdminPuzzle() {
     <>
       <Navbar />
       <div className="puzzle-container">
-        <h2 className="title">Add a New Weekly Puzzle</h2>
+        <h2 className="title">Update Weekly Puzzle Leaderboard</h2>
 
         <input
           type="text"
-          placeholder="Enter puzzle question"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Participant Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           className="answer-input"
         />
+
         <input
           type="text"
-          placeholder="Enter answer"
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
+          placeholder="Department / Branch"
+          value={branch}
+          onChange={(e) => setBranch(e.target.value)}
           className="answer-input"
         />
+
         <input
           type="text"
-          placeholder="Enter hint"
-          value={hint}
-          onChange={(e) => setHint(e.target.value)}
+          placeholder="Year of Study (e.g. SE, TE, BE)"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          className="answer-input"
+        />
+
+        <input
+          type="number"
+          placeholder="Week Number (e.g. 1, 2, 3, 4)"
+          value={weekNo}
+          onChange={(e) => setWeekNo(e.target.value)}
+          className="answer-input"
+        />
+
+        <input
+          type="number"
+          placeholder="Score"
+          value={score}
+          onChange={(e) => setScore(e.target.value)}
           className="answer-input"
         />
 
         <button onClick={handleSubmit} className="btn">
-          Add Puzzle
+          Submit / Update
         </button>
 
         {message && <p className="feedback">{message}</p>}

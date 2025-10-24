@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config'; // for .env variables
-import puzzleRoutes from './routes/puzzleRoutes.js';
+import leaderboardRoutes from "./routes/leaderboardRoutes.js"
 import authRoutes from './routes/authRoutes.js'; 
 import { upload } from './config/cloudinaryConfig.js'; // 👈 Cloudinary setup
 
@@ -30,8 +30,8 @@ app.get('/', (req, res) => {
   res.send('✨ API is running with Cloudinary integration...');
 });
 
-// Puzzle routes
-app.use('/api/puzzles', puzzleRoutes);
+// leaderboard routes
+app.use('/api/puzzles', leaderboardRoutes);
 
 app.use('/api/auth', authRoutes); 
 

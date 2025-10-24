@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const navItems = [
-  { label: "About Us", path: "/about" }, // ✅ no submenu
-  { label: "Weekly Puzzles", path: "/puzzle" }, 
+  { label: "About Us", path: "/about" }, 
+  { label: "Weekly Puzzles", path: "/admin/add-puzzle" }, 
   { label: "Leaderboard", path: "/leaderboard" },
   { label: "Faculty", path: "/faculty" },
   { label: "Team", path: "/team" },

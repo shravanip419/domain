@@ -28,7 +28,7 @@ export default function App() {
 
           {/* Protected Routes */}
           <Route element={<ProtectedRoute allowedRoles={['user', 'admin']} />}>
-            <Route path="/puzzle" element={<WeeklyPuzzle />} />
+          
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
