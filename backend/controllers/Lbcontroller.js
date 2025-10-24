@@ -4,12 +4,24 @@ import { Leaderboard } from "../models/Leaderboard.js";
 export const getAllParticipants = async (req, res) => {
   try {
     const participants = await Leaderboard.find().sort({ totalScore: -1 });
-    res.json(participants);
+
+    // Assign dynamic ranks
+    const rankedParticipants = participants.map((p, index) => ({
+      _id: p._id,
+      name: p.name,
+      branch: p.branch,
+      year: p.year,
+      totalScore: p.totalScore,
+      rank: index + 1,
+    }));
+
+    res.json(rankedParticipants);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error fetching leaderboard" });
   }
 };
+
 export const getParticipantById = async (req, res) => {
   try {
     const participant = await Leaderboard.findById(req.params.id);

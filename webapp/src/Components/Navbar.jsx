@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const navItems = [
   { label: "About Us", path: "/about" }, 
@@ -12,12 +13,15 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const Navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false);
-
+function NavigationHandler(){
+  Navigate('/admin/responses')
+}
   return (
     <nav aria-label="Primary">
       {/* Logo */}
-      <div className="logo" aria-label="Domain logo">
+      <div className="logo" aria-label="Domain logo" onDoubleClick={NavigationHandler}>
         <Link to="/" className="DomainLogo">Domain</Link>
       </div>
 

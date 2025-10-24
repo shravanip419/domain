@@ -2,18 +2,36 @@ import { PlayerCard } from "../Components/Playercard";
 import { Trophy } from "lucide-react";
 import "./LeaderBoard.css";
 import Navbar from "../components/Navbar";
+import { useState,useEffect } from "react";
+function Leaderboard() {
+   const [leaderboardData, setLeaderboardData] = useState([]);
+  const [loading, setLoading] = useState(true);
+useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/puzzles"); 
+        const data = await response.json();
+        setLeaderboardData(data);
+      } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchLeaderboard();
+  }, []);
 
-const leaderboardData = [
-  { id: 1, name: "Mr_X",   rank: 1 },
-  { id: 2, name: "Ms_Y", rank: 2 },
-  { id: 3, name: "dany",   rank: 3 },
-  { id: 4, name: "mhaskar",   rank: 4 },
-  { id: 7, name: "nair",   rank: 7 },
-  { id: 8, name: "mangale",   rank: 8 },
-  {id:9,name:"Lobo",rank:9}
-];// add score and avatar dont change spelling avatar is a image
-
- function Leaderboard() {
+  if (loading) {
+    return (
+      <>
+        <Navbar />
+        <div className="leaderboard-container">
+          <h2>Loading leaderboard...</h2>
+        </div>
+      </>
+    );
+  }
+ 
   const topThree = leaderboardData.slice(0, 3);
   const restOfPlayers = leaderboardData.slice(3);
 
