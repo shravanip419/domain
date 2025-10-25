@@ -11,21 +11,13 @@ import {
 const router = express.Router();
 
 
-router.get('/', getAllParticipants);
-
-
-router.get('/:id', getParticipantById);
-
-
-router.post('/update', addOrUpdateWeeklyScore);
-
 
 router.get('/weekly/:weekNo', getWeeklyWinners);
-
-
 router.post('/monthly', getMonthlyLeaderboard);
-
-
+router.get('/', getAllParticipants);
+router.post('/update', addOrUpdateWeeklyScore);
+router.get('/:id', getParticipantById);
 router.delete('/:id', deleteParticipant);
+
 
 export default router;

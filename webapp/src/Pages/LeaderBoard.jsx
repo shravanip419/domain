@@ -9,7 +9,7 @@ function Leaderboard() {
 useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/puzzles"); 
+        const response = await fetch("http://localhost:4000/api/puzzles"); 
         const data = await response.json();
         setLeaderboardData(data);
       } catch (error) {
@@ -76,7 +76,7 @@ useEffect(() => {
             <h2 className="rankings-title">All Rankings</h2>
             <div className="rankings-list">
               {restOfPlayers.map((player) => (
-                <PlayerCard key={player.id} {...player} />
+                <PlayerCard key={player._id} {...player} />
               ))}
             </div>
           </div>

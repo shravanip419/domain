@@ -14,7 +14,7 @@ export default function AdminResponses() {
   const fetchWeeklyWinners = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:4000/api/leaderboard/weekly/${week}`
+        `http://localhost:4000/api/puzzles/weekly/${week}`
       );
       setWeeklyWinners(res.data);
       setMessage(`Weekly winners for week ${week} fetched successfully!`);
@@ -33,7 +33,7 @@ export default function AdminResponses() {
         .filter((n) => !isNaN(n));
 
       const res = await axios.post(
-        `http://localhost:4000/api/leaderboard/monthly`,
+        `http://localhost:4000/api/puzzles/monthly`,
         { weeks: weekArray }
       );
 

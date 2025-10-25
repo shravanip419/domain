@@ -1,6 +1,6 @@
 import { RankBadge } from "./RankBadge";
 
-export function PlayerCard({ rank, name,  isPodium = false }) {
+export function PlayerCard({ rank, name,  isPodium = false ,totalScore }) {
   if (isPodium) {
     const podiumClass =
       rank === 1
@@ -20,7 +20,8 @@ export function PlayerCard({ rank, name,  isPodium = false }) {
             <div className="podium-info">
               <h3 className="podium-name">{name}</h3>
              {/*  <p className="podium-score">{score.toloacaleString()}</p> */}
-              <p className="podium-points-label">points</p>
+              <p className="player-score">{totalScore} Points</p>
+              
             </div>
           </div>
         </div>
@@ -36,7 +37,7 @@ export function PlayerCard({ rank, name,  isPodium = false }) {
         <p className="player-rank-label">Rank #{rank}</p>
       </div>
       <div className="player-score-section">
-        <p className="player-score"></p>
+        <p className="player-score">{totalScore}</p>
         <p className="player-points-label">points</p>
       </div>
     </div>
