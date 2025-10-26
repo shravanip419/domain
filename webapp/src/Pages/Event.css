@@ -1,0 +1,144 @@
+body {
+  background-color: #0d001a;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+/* 🌌 Page wrapper */
+.event-page {
+  padding: 60px 10%;
+  text-align: center;
+  color: #fff;
+  background: radial-gradient(circle at top, #180033, #0a0015);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ✨ Floating math symbols */
+.event-page::before {
+  content: "∑ π ∞ √ ∫ θ";
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.05);
+  text-shadow: 0 0 25px rgba(175, 0, 255, 0.2);
+  animation: float 12s infinite ease-in-out alternate;
+}
+
+.event-page::after {
+  content: "∆ α β φ Ω";
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  font-size: 3.5rem;
+  color: rgba(255, 255, 255, 0.05);
+  text-shadow: 0 0 25px rgba(175, 0, 255, 0.2);
+  animation: float 10s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-20px);
+  }
+}
+
+/* 🌟 Title */
+.event-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #d89cff;
+  text-shadow: 0 0 10px #a84dff, 0 0 25px #c266ff;
+  margin-bottom: 50px;
+  letter-spacing: 2px;
+}
+
+/* 📦 Stack vertically */
+.event-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+/* 🟣 Event box */
+.event-card {
+  width: 85%;
+  background: rgba(25, 0, 51, 0.9);
+  border: 1px solid #b366ff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(180, 0, 255, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px #b366ff, 0 0 50px #9933ff;
+}
+
+/* 🎠 Carousel */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.event-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  filter: brightness(0.85);
+  transition: all 0.4s ease;
+  border-bottom: 1px solid #b366ff;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(153, 51, 255, 0.25);
+  border: 1px solid #d89cff;
+  color: #fff;
+  font-size: 1.8rem;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 2;
+}
+
+.arrow:hover {
+  background: rgba(153, 51, 255, 0.6);
+  box-shadow: 0 0 12px #b366ff;
+}
+
+.arrow.left {
+  left: 20px;
+}
+
+.arrow.right {
+  right: 20px;
+}
+
+/* 🧮 Info section */
+.event-info {
+  padding: 25px 40px;
+  text-align: left;
+}
+
+.event-info h2 {
+  color: #e6b3ff;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px #a84dff;
+}
+
+.event-info p {
+  font-size: 1rem;
+  color: #d1aaff;
+  line-height: 1.7;
+}
