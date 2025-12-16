@@ -54,7 +54,9 @@ export default function Home() {
   <div className="scroll-down" aria-label="Scroll down indicator">
           Scroll down
         </div>
+     
       </main>
+         
     </>
   );
 }
