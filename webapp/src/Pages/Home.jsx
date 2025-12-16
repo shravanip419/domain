@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/Navbar"; // 👈 use Navbar component
+import Navbar from "../components/Navbar";
 import "./Home.css";
 
 import math1 from "../assets/math1.jpeg";
