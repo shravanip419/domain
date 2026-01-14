@@ -5,7 +5,7 @@ import "./AdminResponses.css";
 
 export default function AdminResponses() {
   // List of admins
-  const Admins = [{ title: "Adithya" }];
+  const Admins = [{ title: "Adithya" ,password :"1333"}];
 
   const [week, setWeek] = useState("");
   const [month, setMonth] = useState("");
@@ -15,13 +15,14 @@ export default function AdminResponses() {
 
   const [admin, setAdmin] = useState(false);
   const [adminName, setAdminName] = useState("");
+  const[adpass,setadpass] = useState("")
   const [authMessage, setAuthMessage] = useState("");
 
   const verifyAdmin = () => {
     const trimmedName = adminName.trim().toLowerCase();
-
+    const trimmedpass = adpass.trim().toLowerCase();
     const isAdmin = Admins.some(
-      (a) => a.title.toLowerCase() === trimmedName
+      (a) => a.title.toLowerCase() === trimmedName & a.password.toLowerCase() === trimmedpass
     );
 
     if (isAdmin) {
@@ -81,6 +82,10 @@ export default function AdminResponses() {
               value={adminName}
               onChange={(e) => setAdminName(e.target.value)}
             />
+            <input type="password" 
+            placeholder="Password"
+            value={adpass}
+            onChange={(e)=>setadpass(e.target.value)} />
             <button onClick={verifyAdmin}>Enter</button>
 
             {authMessage && (

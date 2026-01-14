@@ -5,11 +5,12 @@ import "./WeeklyPuzzle.css";
 
 export default function AdminLeaderboard() {
   // Admin list
-  const Admins = [{ title: "Adithya" }];
+  const Admins = [{ title: "Adithya" ,password :"1333"},];
 
   // Admin auth state
   const [admin, setAdmin] = useState(false);
   const [adminName, setAdminName] = useState("");
+  const[adpass ,setadpass] = useState("")
   const [authMessage, setAuthMessage] = useState("");
 
   // Form state
@@ -22,9 +23,9 @@ export default function AdminLeaderboard() {
 
   const verifyAdmin = () => {
     const trimmedName = adminName.trim().toLowerCase();
-
+    const trimmedpass = adpass.trim().toLowerCase()
     const isAdmin = Admins.some(
-      (a) => a.title.toLowerCase() === trimmedName
+      (a) => a.title.toLowerCase() === trimmedName && a.password.toLocaleLowerCase
     );
 
     if (isAdmin) {
@@ -78,7 +79,14 @@ export default function AdminLeaderboard() {
               onChange={(e) => setAdminName(e.target.value)}
               className="answer-input"
             />
-
+            <input
+              type="password"
+              placeholder="Enter Password"
+              value={adpass}
+              onChange={(e) => setadpass(e.target.value)}
+              className="answer-input"
+            />
+            <br />
             <button onClick={verifyAdmin} className="btn">
               Enter
             </button>
