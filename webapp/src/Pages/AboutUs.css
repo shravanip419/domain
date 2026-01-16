@@ -1,0 +1,91 @@
+.about-section {
+  min-height: 100vh;
+  padding: 7rem 30vw 6rem;
+  background: linear-gradient(180deg, #141418 0%, #1f1238 60%, #0f0f1a 100%);
+  color: #e5e5f0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* soft ambient glow */
+.about-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(170,151,245,0.15), transparent 60%),
+              radial-gradient(circle at 80% 70%, rgba(252,191,73,0.12), transparent 60%);
+  pointer-events: none;
+}
+
+/* ---------- HEADINGS ---------- */
+.about-section h2 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #b7aefc;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.about-section h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #aa97f5, #7c67f6);
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(170,151,245,0.7);
+}
+
+.about-section h3 {
+  margin-top: 4rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fcbf49;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+.about-section h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, #fcbf49, #ffaa29);
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(252,191,73,0.6);
+}
+
+/* ---------- TEXT ---------- */
+.about-section p {
+  margin-top: 1.2rem;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  max-width: 800px;
+  color: #cfcfe8;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1024px) {
+  .about-section {
+    padding: 6rem 10vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section h2 {
+    font-size: 2.4rem;
+  }
+
+  .about-section h3 {
+    font-size: 1.8rem;
+  }
+
+  .about-section p {
+    font-size: 1rem;
+  }
+}

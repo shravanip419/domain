@@ -1,50 +1,76 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
 
 const navItems = [
-  { label: "About Us", path: "/about" }, 
-  { label: "Weekly Puzzles", path: "/admin/add-puzzle" }, 
-  { label: "Leaderboard", path: "/leaderboard" },
-  { label: "Faculty", path: "/faculty" },
-  { label: "Team", path: "/team" },
-  { label: "Events", path: "/events" },
-  { label: "Contacts", path: "/contacts" },
+  { label: "About Us", type: "scroll", target: "about" },
+  { label: "Weekly Puzzles", type: "route", path: "/weekly-puzzle" },
+  { label: "Leaderboard", type: "route", path: "/leaderboard" },
+  { label: "Faculty", type: "route", path: "/faculty" },
+  { label: "Team", type: "route", path: "/team" },
+  { label: "Events", type: "route", path: "/events" },
+  // { label: "Contacts", type: "scroll", target: "footer" },
 ];
 
 export default function Navbar() {
-  const Navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-function NavigationHandler(){
-  Navigate('/admin/responses')
-}
+
+  function NavigationHandler() {
+    navigate("/admin/responses");
+  }
+
+  function handleScroll(target) {
+    setMenuOpen(false);
+
+    // if not on home, go home first
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    } else {
+      document.getElementById(target)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <nav aria-label="Primary">
       {/* Logo */}
-      <div className="logo" aria-label="Domain logo" onDoubleClick={NavigationHandler}>
+      <div className="logo" onDoubleClick={NavigationHandler}>
         <Link to="/" className="DomainLogo">Domain</Link>
       </div>
 
-      {/* Hamburger Menu for small screens */}
+      {/* Hamburger */}
       <div
         className="menu-toggle"
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle navigation menu"
         role="button"
         tabIndex={0}
-        onKeyDown={(e) => e.key === "Enter" && setMenuOpen(!menuOpen)}
       >
         ☰
       </div>
 
-      {/* Nav Links */}
+      {/* Links */}
       <ul className={menuOpen ? "show" : ""}>
         {navItems.map((item, i) => (
-          <li key={i} tabIndex="0">
-            <Link to={item.path} onClick={() => setMenuOpen(false)}>
-              {item.label}
-            </Link>
+          <li key={i}>
+            {item.type === "route" ? (
+              <Link
+                to={item.path}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span
+                className="nav-scroll"
+                onClick={() => handleScroll(item.target)}
+              >
+                {item.label}
+              </span>
+            )}
           </li>
         ))}
       </ul>
