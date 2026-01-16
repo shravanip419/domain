@@ -9,7 +9,6 @@ const navItems = [
   { label: "Faculty", type: "route", path: "/faculty" },
   { label: "Team", type: "route", path: "/team" },
   { label: "Events", type: "route", path: "/events" },
-  // { label: "Contacts", type: "scroll", target: "footer" },
 ];
 
 export default function Navbar() {
@@ -24,7 +23,6 @@ export default function Navbar() {
   function handleScroll(target) {
     setMenuOpen(false);
 
-    // if not on home, go home first
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
@@ -52,7 +50,7 @@ export default function Navbar() {
         ☰
       </div>
 
-      {/* Links */}
+      {/* Nav Links */}
       <ul className={menuOpen ? "show" : ""}>
         {navItems.map((item, i) => (
           <li key={i}>
