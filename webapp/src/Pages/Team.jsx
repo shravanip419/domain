@@ -147,7 +147,7 @@ const Team = () => {
     
       
       <div className="team-banner">
-        <img src="https://res.cloudinary.com/dztzai54z/image/upload/v1760462045/69upscale_upscayl_uxaaf1.jpg" 
+        <img src="https://res.cloudinary.com/dztzai54z/image/upload/v1760549744/69upscale_upscayl_ywpfm5.png" 
         alt="Team Banner" />
       </div> 
 
