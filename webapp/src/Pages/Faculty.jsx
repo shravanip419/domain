@@ -19,7 +19,6 @@ export default function Faculty() {
 
   return (
     <div className="faculty-page">
-      {/* ✅ Reusable Navbar */}
       <Navbar />
 
       {/* Header Section */}
