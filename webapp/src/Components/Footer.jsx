@@ -12,12 +12,11 @@ export default function Footer() {
           Think smarter. Solve better. Have fun doing math.
         </p>
 
-      
-
+        
         <span className="footer-line"></span>
 
         <p className="footer-copy">
-          © {new Date().getFullYear()} Math Club · All rights reserved
+          © {new Date().getFullYear()} Domain Math Club · All rights reserved
         </p>
       </div>
     </footer>

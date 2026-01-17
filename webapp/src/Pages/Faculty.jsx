@@ -6,24 +6,14 @@ import Navbar from "../components/Navbar"; // ✅ using shared navbar
 export default function Faculty() {
   const facultyData = [
     {
-      name: "Prof. ABC",
+      name: "Prof. Revathy S",
       role: "Professor",
       desc: "Dedicated mentor guiding students in the DOMAIN Maths Club.",
     },
     {
-      name: "Prof. DEF",
+      name: "Prof. Manisha Seksaria",
       role: "Assistant Professor",
       desc: "Provides support and encouragement for learning initiatives.",
-    },
-    {
-      name: "Prof. GHI",
-      role: "Asst. Professor",
-      desc: "Helps students explore and grow through mathematical challenges.",
-    },
-    {
-      name: "Prof. JKL",
-      role: "Asst. Professor",
-      desc: "Encourages participation and problem-solving within the club.",
     },
   ];
 

@@ -13,6 +13,7 @@ import event22 from "../assets/event2.2.jpg";
 import event23 from "../assets/event2.3.jpg";
 import event24 from "../assets/event2.4.jpg";
 import event25 from "../assets/event2.5.jpg";
+import Navbar from "../components/Navbar";
 
 const events = [
   {
@@ -55,6 +56,8 @@ const Event = () => {
   };
 
   return (
+  <>
+  <Navbar/>
     <div className="event-page">
       <h1 className="event-title">Events Conducted in 2025 By Domain</h1>
       <div className="event-grid">
@@ -95,6 +98,7 @@ const Event = () => {
         })}
       </div>
     </div>
+    </>
   );
 };
 
