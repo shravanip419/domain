@@ -4,7 +4,7 @@ import cors from 'cors';
 import 'dotenv/config'; // for .env variables
 import leaderboardRoutes from "./routes/leaderboardRoutes.js"
 import authRoutes from './routes/authRoutes.js'; 
-import { upload } from './config/cloudinaryConfig.js'; // 👈 Cloudinary setup
+import { upload } from './config/cloudinaryConfig.js'; 
 
 // Initialize app
 const app = express();
@@ -34,8 +34,6 @@ app.get('/', (req, res) => {
 app.use('/api/puzzles', leaderboardRoutes);
 
 app.use('/api/auth', authRoutes); 
-
-// ---------------- CLOUDINARY UPLOAD ROUTE ---------------- //
 app.post('/api/upload', upload.single('image'), async (req, res) => {
   try {
     if (!req.file || !req.file.path) {
@@ -47,7 +45,7 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
       imageUrl: req.file.path, // 🌩️ Cloudinary-hosted image URL
     });
   } catch (error) {
-    console.error('❌ Upload failed:', error);
+    console.error(' Upload failed:', error);
     res.status(500).json({ success: false, message: 'Image upload failed' });
   }
 });
@@ -55,5 +53,5 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
