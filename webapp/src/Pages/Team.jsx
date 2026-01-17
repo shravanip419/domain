@@ -73,22 +73,22 @@ const teamMembers = [
     img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455464/sabnis_mva1lv.png",
   },
   {
-    name: "xyz",
+    name: "Soham Datar",
     role: "Puzzle Team",
     img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455477/puzzle2_k6knle.png",
   },
   {
-    name: "xyz",
+    name: "Dhruvin Chudasama",
     role: "Puzzle Team",
     img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455445/puzzle4_rqnghv.png",
   },
   {
-    name: "xyz",
+    name: "Ketan Shelke",
     role: "Puzzle Team",
     img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455444/puzzle1_hspcin.png",
   },
   {
-    name: "xyz",
+    name: "Roger D'Souza",
     role: "Puzzle Team",
     img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455460/puzzle3_fnvsxm.png",
   },
