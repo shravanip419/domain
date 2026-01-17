@@ -3,11 +3,11 @@ import Navbar from "../components/Navbar";
 import AboutUs from "../Pages/AboutUs";
 import "./Home.css";
 
-import math1 from "../assets/math1.jpeg";
-import math2 from "../assets/math2.jpeg";
-import math3 from "../assets/math6.jpeg";
-import math4 from "../assets/math4.jpeg";
-import math5 from "../assets/math5.jpeg";
+import math1 from "../assets/image.png";
+import math2 from "../assets/group_home.png";
+import math3 from "../assets/groupsit.png";
+import math4 from "../assets/mondini.png";
+import math5 from "../assets/random.png";
 import Footer from "../Components/Footer";
 
 const avatarData = [
