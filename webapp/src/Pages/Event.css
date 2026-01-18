@@ -142,3 +142,87 @@ body {
   color: #d1aaff;
   line-height: 1.7;
 }
+/* 📱 Tablets & smaller laptops */
+@media (max-width: 1024px) {
+  .event-page {
+    padding: 50px 6%;
+  }
+
+  .event-title {
+    font-size: 2.2rem;
+  }
+
+  .event-card {
+    width: 95%;
+  }
+
+  .event-img {
+    height: 320px;
+  }
+
+  .event-info {
+    padding: 25px 30px;
+  }
+}
+
+/* 📱 Mobile devices */
+@media (max-width: 768px) {
+  .event-page {
+    padding: 40px 5%;
+  }
+
+  .event-title {
+    font-size: 1.9rem;
+    letter-spacing: 1px;
+  }
+
+  .event-card {
+    width: 100%;
+  }
+
+  .event-img {
+    height: 260px;
+  }
+
+  .event-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .event-info p {
+    font-size: 0.95rem;
+  }
+
+  .arrow {
+    font-size: 1.4rem;
+    padding: 6px 10px;
+  }
+}
+
+/* 📱 Small phones (extra cozy mode) */
+@media (max-width: 480px) {
+  .event-title {
+    font-size: 1.6rem;
+  }
+
+  .event-img {
+    height: 220px;
+  }
+
+  .event-info {
+    padding: 20px;
+  }
+
+  .event-info h2 {
+    font-size: 1.3rem;
+  }
+
+  .event-info p {
+    font-size: 0.9rem;
+  }
+
+  /* Tone down floating symbols so they don’t bully the screen */
+  .event-page::before,
+  .event-page::after {
+    font-size: 2.2rem;
+  }
+}
