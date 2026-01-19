@@ -48,7 +48,7 @@ const teamMembers = [
     img: "https://res.cloudinary.com/dztzai54z/image/upload/f_auto,q_auto,w_400/v1760455483/shaun_koy432.png",
   },
   
-  
+
   
   {
     name: "Ankita Gadre",

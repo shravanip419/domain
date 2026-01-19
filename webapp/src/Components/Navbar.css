@@ -8,6 +8,7 @@ nav {
   font-size: 0.95rem;
   position: relative;
   z-index: 10;
+  background-color: #19143e;
 }
 
 nav .logo {
