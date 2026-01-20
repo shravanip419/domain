@@ -27,7 +27,7 @@ export default function Home() {
       <main className="hero">
         <h1>
           <span className="highlight" aria-hidden="true"></span>
-          Math it!!
+         Domain
         </h1>
 
         <h2>Math builds your brain</h2>

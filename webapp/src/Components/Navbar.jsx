@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 const navItems = [
   { label: "About Us", type: "scroll", target: "about" },
-  { label: "Weekly Puzzles", type: "route", path: "/weekly-puzzle" },
+ // { label: "Weekly Puzzles", type: "route", path: "/weekly-puzzle" },
   { label: "Leaderboard", type: "route", path: "/leaderboard" },
   { label: "Faculty", type: "route", path: "/faculty" },
   { label: "Team", type: "route", path: "/team" },
@@ -17,7 +17,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   function NavigationHandler() {
-    navigate("/admin/responses");
+    navigate("/Adminverify");
   }
 
   function handleScroll(target) {

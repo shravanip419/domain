@@ -9,6 +9,7 @@ import AdminPuzzle from "./Pages/AdminPuzzle";
 import Login from "./Pages/Login";
 import AdminResponses from "./Pages/AdminResponses";
 import Event from "./Pages/Event";
+import AdminVerify from "./Pages/AdminVerify";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
 import "./App.css"; 
@@ -18,7 +19,7 @@ export default function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          {/* 🌐 Public Routes */}
+        
           <Route path="/" element={<Home />} />
           <Route path="/weekly-puzzle" element={<WeeklyPuzzle />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
@@ -26,13 +27,13 @@ export default function App() {
           <Route path="/faculty" element={<Faculty />} />
           <Route path="/events" element={<Event />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/Adminverify" element={<AdminVerify/>} />
 
-          {/* 🔐 Protected Routes (User + Admin) */}
-          <Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}>
-            {/* add user-only routes here later */}
-          </Route>
+         
+          <Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}/>
+            
 
-          {/* 🔐 Admin Only Routes */}
+         
           <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
             <Route path="/admin/add-puzzle" element={<AdminPuzzle />} />
             <Route path="/admin/responses" element={<AdminResponses />} />

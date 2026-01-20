@@ -4,35 +4,11 @@ import Navbar from "../components/Navbar";
 import "./AdminResponses.css";
 
 export default function AdminResponses() {
-  // List of admins
-  const Admins = [{ title: "Adithya" ,password :"1333"}];
-
   const [week, setWeek] = useState("");
   const [month, setMonth] = useState("");
   const [message, setMessage] = useState("");
   const [weeklyWinners, setWeeklyWinners] = useState([]);
   const [monthlyWinners, setMonthlyWinners] = useState([]);
-
-  const [admin, setAdmin] = useState(false);
-  const [adminName, setAdminName] = useState("");
-  const[adpass,setadpass] = useState("")
-  const [authMessage, setAuthMessage] = useState("");
-
-  const verifyAdmin = () => {
-    const trimmedName = adminName.trim().toLowerCase();
-    const trimmedpass = adpass.trim().toLowerCase();
-    const isAdmin = Admins.some(
-      (a) => a.title.toLowerCase() === trimmedName & a.password.toLowerCase() === trimmedpass
-    );
-
-    if (isAdmin) {
-      setAdmin(true);
-      setAuthMessage("");
-    } else {
-      setAdmin(false);
-      setAuthMessage(" You are not authorized to view this page.");
-    }
-  };
 
   const fetchWeeklyWinners = async () => {
     try {
@@ -43,7 +19,7 @@ export default function AdminResponses() {
       setMessage(`Weekly winners for week ${week} fetched successfully!`);
     } catch (err) {
       console.error(err);
-      setMessage(" Can't fetch weekly winners!");
+      setMessage("Can't fetch weekly winners!");
     }
   };
 
@@ -59,96 +35,92 @@ export default function AdminResponses() {
         { weeks: weekArray }
       );
 
-      const topThree = res.data.slice(0, 3);
-      setMonthlyWinners(topThree);
-      setMessage(` Top 3 monthly winners for weeks: ${weekArray.join(", ")}`);
+      setMonthlyWinners(res.data.slice(0, 3));
+      setMessage("Top 3 monthly winners fetched successfully!");
     } catch (err) {
       console.error(err);
-      setMessage(" Can't fetch monthly winners!");
+      setMessage("Can't fetch monthly winners!");
     }
   };
 
   return (
     <>
       <Navbar />
+
       <div className="admin-responses-container">
-        {/* Step 1: Ask for admin name */}
-        {!admin ? (
-          <div className="response-card">
-            <h2 className="responses-title">Admin Login</h2>
-            <input
-              type="text"
-              placeholder="Enter your name"
-              value={adminName}
-              onChange={(e) => setAdminName(e.target.value)}
-            />
-            <input type="password" 
-            placeholder="Password"
-            value={adpass}
-            onChange={(e)=>setadpass(e.target.value)} />
-            <button onClick={verifyAdmin}>Enter</button>
+        <h2 className="responses-title">
+          Get Weekly or Monthly Winners
+        </h2>
 
-            {authMessage && (
-              <p className="status-message">{authMessage}</p>
-            )}
-          </div>
-        ) : (
-          <>
-            {/* Original content shown only if admin = true */}
-            <h2 className="responses-title">Get Weekly or Monthly Winners</h2>
+        <div className="responses-grid">
 
-            <div className="responses-grid">
-              {/* Weekly Winners Section */}
-              <div className="response-card">
-                <h3>Weekly Winners</h3>
+          {/* ===== WEEKLY CARD ===== */}
+          <div className="response-column">
+            <div className="response-card">
+              <h3>Weekly Winners</h3>
+
+              <div className="card-controls">
                 <input
                   type="text"
                   placeholder="Enter the Week Number"
                   value={week}
                   onChange={(e) => setWeek(e.target.value)}
                 />
-                <button onClick={fetchWeeklyWinners}>Find</button>
+
+                <button onClick={fetchWeeklyWinners}>
+                  Find Weekly Winners
+                </button>
 
                 {weeklyWinners.length > 0 && (
-                  <ul>
+                  <ul className="winner-list">
                     {weeklyWinners.map((w, i) => (
                       <li key={i}>
-                        🥇 <b>{w.name}</b> ({w.branch}) — {w.score} pts
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-
-              {/* Monthly Winners Section */}
-              <div className="response-card">
-                <h3>Monthly Winners (Top 3)</h3>
-                <input
-                  type="text"
-                  placeholder="Enter weeks range e.g. 1 2 3 4"
-                  value={month}
-                  onChange={(e) => setMonth(e.target.value)}
-                />
-                <button onClick={fetchMonthlyWinners}>Find</button>
-
-                {monthlyWinners.length > 0 && (
-                  <ul>
-                    {monthlyWinners.map((m, i) => (
-                      <li key={i}>
-                        {i === 0 && "🥇 "}
-                        {i === 1 && "🥈 "}
-                        {i === 2 && "🥉 "}
-                        <b>{m.name}</b> ({m.branch}) — {m.monthlyTotal} pts
+                        🏅 <strong>{w.name}</strong> ({w.branch}) — {w.score} pts
                       </li>
                     ))}
                   </ul>
                 )}
               </div>
             </div>
+          </div>
 
-            {message && <p className="status-message">{message}</p>}
-          </>
-        )}
+          {/* ===== MONTHLY CARD ===== */}
+          <div className="response-column">
+            <div className="response-card">
+              <h3>Monthly Winners (Top 3)</h3>
+
+              <div className="card-controls">
+                <input
+                  type="text"
+                  placeholder="Enter weeks e.g. 1 2 3 4"
+                  value={month}
+                  onChange={(e) => setMonth(e.target.value)}
+                />
+
+                <button onClick={fetchMonthlyWinners}>
+                  Find Monthly Winners
+                </button>
+
+                {monthlyWinners.length > 0 && (
+                  <ul className="winner-list">
+                    {monthlyWinners.map((m, i) => (
+                      <li key={i}>
+                        {i === 0 && "🥇 "}
+                        {i === 1 && "🥈 "}
+                        {i === 2 && "🥉 "}
+                        <strong>{m.name}</strong> ({m.branch}) —{" "}
+                        {m.monthlyTotal} pts
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {message && <p className="status-message">{message}</p>}
       </div>
     </>
   );

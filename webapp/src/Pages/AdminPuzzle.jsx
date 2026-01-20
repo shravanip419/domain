@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import "./WeeklyPuzzle.css";
+import "./AdminPuzzle.css";
 
 export default function AdminLeaderboard() {
-  // Admin list
-  const Admins = [{ title: "Adithya" ,password :"1333"},];
-
-  // Admin auth state
-  const [admin, setAdmin] = useState(false);
-  const [adminName, setAdminName] = useState("");
-  const[adpass ,setadpass] = useState("")
-  const [authMessage, setAuthMessage] = useState("");
+  
 
   // Form state
   const [name, setName] = useState("");
@@ -21,21 +14,7 @@ export default function AdminLeaderboard() {
   const [score, setScore] = useState("");
   const [message, setMessage] = useState("");
 
-  const verifyAdmin = () => {
-    const trimmedName = adminName.trim().toLowerCase();
-    const trimmedpass = adpass.trim().toLowerCase()
-    const isAdmin = Admins.some(
-      (a) => a.title.toLowerCase() === trimmedName && a.password.toLocaleLowerCase
-    );
 
-    if (isAdmin) {
-      setAdmin(true);
-      setAuthMessage("");
-    } else {
-      setAdmin(false);
-      setAuthMessage(" You are not authorized to access this page.");
-    }
-  };
 
   const handleSubmit = async () => {
     try {
@@ -68,33 +47,8 @@ export default function AdminLeaderboard() {
     <>
       <Navbar />
       <div className="puzzle-container">
-        {!admin ? (
-          <>
-            <h2 className="title">Admin Login</h2>
-
-            <input
-              type="text"
-              placeholder="Enter your name"
-              value={adminName}
-              onChange={(e) => setAdminName(e.target.value)}
-              className="answer-input"
-            />
-            <input
-              type="password"
-              placeholder="Enter Password"
-              value={adpass}
-              onChange={(e) => setadpass(e.target.value)}
-              className="answer-input"
-            />
-            <br />
-            <button onClick={verifyAdmin} className="btn">
-              Enter
-            </button>
-
-            {authMessage && <p className="feedback">{authMessage}</p>}
-          </>
-        ) : (
-          <>
+     
+       
             <h2 className="title">Update Weekly Puzzle Leaderboard</h2>
 
             <input
@@ -142,8 +96,8 @@ export default function AdminLeaderboard() {
             </button>
 
             {message && <p className="feedback">{message}</p>}
-          </>
-        )}
+         
+      
       </div>
     </>
   );
