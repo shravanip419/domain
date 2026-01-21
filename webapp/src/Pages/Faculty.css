@@ -1,19 +1,23 @@
+/* ---------- Global Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* General dark background with gradient */
 body, html, #root {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #0d0d0d, #1a1a2e, #16213e); 
-  background-attachment: fixed; /* keeps gradient steady when scrolling */
+  background: linear-gradient(135deg, #0d0d0d, #1a1a2e, #16213e);
+  background-attachment: fixed;
   color: #eee;
   width: 100%;
   min-height: 100vh;
-  box-sizing: border-box;
 }
 
-
-
-/* Faculty Section Styling */
+/* ---------- Faculty Section ---------- */
 .faculty-page {
   position: relative;
   overflow: hidden;
@@ -45,7 +49,7 @@ body, html, #root {
   z-index: 0;
 }
 
-/* Header text */
+/* ---------- Header ---------- */
 .faculty-header {
   text-align: center;
   margin: 3rem auto 2rem;
@@ -59,7 +63,6 @@ body, html, #root {
   font-size: 2.5rem;
   font-weight: 700;
   color: #fff;
-  position: relative;
   display: inline-block;
 }
 
@@ -80,37 +83,34 @@ body, html, #root {
   line-height: 1.6;
 }
 
-/* Faculty cards grid */
+/* ---------- Faculty Grid ---------- */
 .faculty-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   padding: 2rem 3rem 5rem;
-  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
 }
 
-/* Make it responsive */
 @media (max-width: 900px) {
   .faculty-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* Faculty card */
+/* ---------- Faculty Card ---------- */
 .faculty-card {
   background: #1e1e27;
   border-radius: 14px;
-  overflow: hidden;
   display: flex;
   align-items: center;
   padding: 1.2rem;
   gap: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
   border: 1px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
 .faculty-card:hover {
@@ -119,10 +119,20 @@ body, html, #root {
   border: 1px solid #ffb347;
 }
 
-/* Faculty icon */
+/* Faculty icon fallback */
 .faculty-icon {
   font-size: 85px;
   color: #888;
+  flex-shrink: 0;
+}
+
+/* Faculty image */
+.faculty-photo {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ffb347;
   flex-shrink: 0;
 }
 
@@ -145,7 +155,7 @@ body, html, #root {
   margin: 0.5rem 0;
 }
 
-/* Social icons */
+/* ---------- Social Icons ---------- */
 .socials a {
   margin-right: 0.6rem;
   color: #bbb;
