@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 import './Login.css';
 import Navbar from '../components/Navbar';
 
-const API_BASE_URL = 'http://localhost:4000/api/auth/login';
+const API_BASE_URL = 'https://domain-gdr1.onrender.com/api/auth/login';
 
 export default function Login() {
     const [username, setUsername] = useState('');

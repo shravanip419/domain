@@ -23,7 +23,7 @@ export default function AdminLeaderboard() {
         return;
       }
 
-      await axios.post("http://localhost:4000/api/puzzles/update", {
+      await axios.post("https://domain-gdr1.onrender.com/api/puzzles/update", {
         name,
         branch,
         year,
