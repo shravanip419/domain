@@ -18,11 +18,28 @@ mongoose
   .catch((err) => console.log('❌ MongoDB connection error:', err));
 
 // Middleware
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://YOUR-VERCEL-PROJECT.vercel.app"
+];
+
 app.use(
   cors({
-    origin: 'http://localhost:5173', // your React dev server
+    origin: function (origin, callback) {
+      // allow requests with no origin (like Postman)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 );
+
 app.use(express.json());
 
 // Base route
