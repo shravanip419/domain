@@ -20,7 +20,7 @@ mongoose
 // Middleware
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://YOUR-VERCEL-PROJECT.vercel.app"
+  "https://domain-deploy1.vercel.app"
 ];
 
 app.use(
