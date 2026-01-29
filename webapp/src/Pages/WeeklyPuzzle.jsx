@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext'; // NEW
 import "./WeeklyPuzzle.css";
 import Navbar from "../components/Navbar"; 
 
-const API_BASE_URL = "https://domain-gdr1.onrender.com/api/puzzles";
+const API_BASE_URL = "https://domain-deploy.onrender.com/api/puzzles";
 
 export default function WeeklyPuzzle() {
     // Get user state from context

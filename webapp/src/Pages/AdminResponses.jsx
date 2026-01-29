@@ -13,7 +13,7 @@ export default function AdminResponses() {
   const fetchWeeklyWinners = async () => {
     try {
       const res = await axios.get(
-        `https://domain-gdr1.onrender.com/api/puzzles/weekly/${week}`
+        `https://domain-deploy.onrender.com/api/puzzles/weekly/${week}`
       );
       setWeeklyWinners(res.data);
       setMessage(`Weekly winners for week ${week} fetched successfully!`);

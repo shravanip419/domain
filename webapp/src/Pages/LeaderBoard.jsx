@@ -9,7 +9,7 @@ function Leaderboard() {
 useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch("https://domain-gdr1.onrender.com/api/puzzles"); 
+        const response = await fetch("https://domain-deploy.onrender.com/api/puzzles"); 
         const data = await response.json();
         setLeaderboardData(data);
       } catch (error) {
